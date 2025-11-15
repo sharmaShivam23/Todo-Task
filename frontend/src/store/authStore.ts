@@ -10,7 +10,7 @@ interface User {
 interface AuthState {
   user: User | null;
   token: string | null;
-  loading: boolean;               // ⭐ Added
+  loading: boolean;              
   setAuth: (user: User, token: string) => void;
   clearAuth: () => void;
   logout: () => void;
@@ -21,7 +21,7 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       token: null,
-      loading: true, // ⭐ Zustand will update this automatically
+      loading: true, 
 
       setAuth: (user, token) => {
         set({ user, token });
@@ -40,7 +40,7 @@ export const useAuthStore = create<AuthState>()(
       name: 'auth-storage',
       storage: createJSONStorage(() => localStorage),
 
-      // ⭐ Zustand persist callback — remove flickering
+      // Zustand persist callback — remove flickering
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.loading = false;
